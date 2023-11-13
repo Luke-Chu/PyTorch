@@ -1429,7 +1429,7 @@ writer.close()
 
 网上随便找一个图片，如dog，airplane，ship，truck的图片，下图：
 
-<div style="text-align: center;">
+<div align="center">
    <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
    &nbsp;&nbsp;
    <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
