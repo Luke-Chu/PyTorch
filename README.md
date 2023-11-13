@@ -482,23 +482,25 @@ model = nn.Sequential(
 - 卷积核：在图像处理时，给定输入图像，输入图像中一个小区域中像素加权平均后成为输出图像中的每个对应像素，其中权值由一个函数定义，这个函数称为卷积核。又称**滤波器**。
 
 对于一个输入图像若其只有一个通道，5×5个像素，卷积核为3×3，也是一个通道。卷积步长为1，padding=0。
-$$
-input = \begin{bmatrix}  1&  2&  0&  3&1 \\\  0&  1&  2&  3&1 \\\  1&  2&  1&  0&0 \\\  5&  2&  3&  1&1 \\\  2&  1&  0&  1&1\end{bmatrix}, kernel = \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}
-$$
+![eq-01](imgs/readme/Eq-卷积核1.svg "输入和卷积核")
+<div align="center">
+   <img src="imgs/readme/Eq-卷积核1.svg" alt="eq-01" title="输入与卷积核">
+</div>
+
 则运算步骤如下：
 
-1. $$
-   \begin{bmatrix}  1&  2&  0 \\\  0&  1&  2 \\\  1&  2&  1\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}= 10
-   $$
+1. <div align="center">
+      <img src="imgs/readme/Eq-卷积核2.svg" alt="eq-02" title="卷积核运算1">
+   </div>
 
-2. $$
-   \begin{bmatrix}  2&  0&  3 \\\  1&  2&  3 \\\  2&  1&  0\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}= 12
-   $$
+2. <div align="center">
+      <img src="imgs/readme/Eq-卷积核3.svg" alt="eq-03" title="卷积核运算2">
+   </div>
 
 3. 一直这样计算完，每次卷积操作都会得到一个新的像素值，上面例子最后会得到3×3的结果，这就相当于是对原图像进行卷积操作后得到的特征图像。
-   $$
-   out = \begin{bmatrix}  10&  12& 12 \\\  18&  16& 16 \\\  13&  9& 3\end{bmatrix}
-   $$
+   <div align="center">
+      <img src="imgs/readme/Eq-卷积核4.svg" alt="eq-04" title="卷积运算结果">
+   </div>
 
 在`torch.nn.functional.conv2d`中有如下几个重要参数：
 
@@ -638,9 +640,9 @@ for data in dataloader:
 - `ceil_mode(bool)`：池化方式，`True`使用`ceil`；`False`使用`floor`。`ceil`可理解为向上取整（入），`floor`向下舍去（舍）。
 
 当`ceil_mode=True`，`kernel_size=3`时，池化窗口为3×3，对每个窗口取最大值，每次移动3步，移动到后面时窗口中可能没有9个像素，由于`ceil_mode=True`，所以选择保留，反之舍弃。下面是一个简单例子：
-$$
-input = \begin{bmatrix}  1&  2&  0&  3&1 \\  0&  1&  2&  3&1 \\  1&  2&  1&  0&0 \\  5&  2&  3&  1&1 \\  2&  1&  0&  1&1\end{bmatrix}, kernel\_size = 3
-$$
+<div align="center">
+   <img src="imgs/readme/Eq-最大池化1.svg" alt="eq-05" title="输入与池化核大小">
+</div>
 
 1. 计算第一步：计算[[1 2 0], [0 1 2], [1 2 1]]中的最大值为2；
 2. 计算第二步：像右移动3个步长，由于`ceil_mode=True`，取[[3 1], [3 1], [0 0]]中的最大值为3；反之舍弃不取；
@@ -726,17 +728,18 @@ writer.close()
 ### nn.ReLU
 
 该函数将小于0的都置为0，大于0的不变，公式如下：
-$$
-ReLU(x)=(x) ^+ =max(0,x)
-$$
+<div align="center">
+   <img src="imgs/readme/Eq-ReLU.svg" alt="eq-06" title="ReLU">
+</div>
+
 有参数`inplace(bool)`表示是否在原输入上改变值，一般用`False`不改变原值，返回新的值。
 
 ### nn.Sigmoid
 
 [官方文档](https://pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html#torch.nn.Sigmoid)，将输入变为非线性，转换为(0, 1)之间。变换公式如下：
-$$
-Sigmoid(x)=\sigma (x)= \frac{1}{1+exp(−x)}
-$$
+<div align="center">
+   <img src="imgs/readme/Eq-Sigmoid.svg" alt="eq-07" title="Sigmoid">
+</div>
 
 ## Normalization Layers
 
