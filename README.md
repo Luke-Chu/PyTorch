@@ -12,7 +12,7 @@
    conda create -n pytorch python=3.8
    ```
 
-4. 下载pytorch包，先去https://pytorch.org/选择相关配置得到下载命令，如图：
+4. 下载pytorch包，先去<https://pytorch.org/选择相关配置得到下载命令，如图：>
 
    <img src="imgs/readme/pytorch下载参数截图.png" alt="image-01" style="zoom:80%;"  title="Pytorch下载参数"/>
 
@@ -56,7 +56,6 @@
    ```powershell
    jupyter notebook
    ```
-
 
 ## Python学习两大法宝
 
@@ -121,7 +120,6 @@
    ```powershell
    conda config --show-sources
    ```
-
 
 # Tensorboard简单使用
 
@@ -198,7 +196,6 @@ writer.add_graph(model, input)  # model是神经网络模型，input是输入
 
 `torchvision`主要跟视觉相关，[网页地址](https://pytorch.org/vision/stable/index.html)
 
-
 ## transforms模块
 
 `transforms`相当于一个图像转换工具箱，可以将图像转化为需要的格式，如将`PIL`格式和`narray`格式的图像转换为`Tensor`格式的图像。`transforms.py`是一个`python`文件，文件中有各种类，每个类（如`Compose`，`ToTensor`，`PILToTensor`）相当于一个工具
@@ -258,9 +255,9 @@ print(type(cv_img)) # <class 'numpy.ndarray'>
 
 ```python
 class Person:
-	def __call__(self, name):
-		print("__call__" + "name")
-		
+ def __call__(self, name):
+  print("__call__" + "name")
+  
 person = Person("Jack") # __call__在创建对象时会被调用
 ```
 
@@ -375,7 +372,7 @@ class MyData(Dataset):
     def __getitem__(self, idx):
         img_path = self.imgs_path[idx] # 通过传入的index得到第index个图片的路径
         img = Image.open(img_path) # 通过python内置Image模块读取图片，参数是图片路径
-        return img	# 返回单个图片，再__init__方法中如果将路径分开，还可以返回该图片的标签，比如是蚂蚁还是蜜蜂
+        return img # 返回单个图片，再__init__方法中如果将路径分开，还可以返回该图片的标签，比如是蚂蚁还是蜜蜂
 
     # 子类必须实现该方法
     def __len__(self):
@@ -441,18 +438,18 @@ class Model(nn.Module):
     # 必须重写__init__方法，并调用父类该方法
     def __init__(self):
         super().__init__()
-        self.x0 = 1		#自定义了一个变量
+        self.x0 = 1  #自定义了一个变量
 
     # forward方法是神经网络的一个处理过程，x就是神经网络的输入，对输入进行处理后输出
     def forward(self, x):
         x = self.x0 + x    # 将输入x+x0后输出
         return x
     
-model = Model()			# 初始化神经网络对象
-x = torch.tensor(1.0)	# 定义一个Tensor类型数据
-out = model(x)			# 将输入传给神经网络，经过处理后输出到out
+model = Model()   # 初始化神经网络对象
+x = torch.tensor(1.0) # 定义一个Tensor类型数据
+out = model(x)   # 将输入传给神经网络，经过处理后输出到out
 
-print(out)				# tensor(2.)
+print(out)    # tensor(2.)
 ```
 
 ### nn.Sequential
@@ -486,23 +483,21 @@ model = nn.Sequential(
 
 对于一个输入图像若其只有一个通道，5×5个像素，卷积核为3×3，也是一个通道。卷积步长为1，padding=0。
 $$
-input = \begin{bmatrix}  1&  2&  0&  3&1 \\  0&  1&  2&  3&1 \\  1&  2&  1&  0&0 \\  5&  2&  3&  1&1 \\  2&  1&  0&  1&1\end{bmatrix}, kernel = \begin{bmatrix}  1&  2&1 \\  0&  1&0 \\  2&  1&0\end{bmatrix}
+input = \begin{bmatrix}  1&  2&  0&  3&1 \\\  0&  1&  2&  3&1 \\\  1&  2&  1&  0&0 \\\  5&  2&  3&  1&1 \\\  2&  1&  0&  1&1\end{bmatrix}, kernel = \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}
 $$
 则运算步骤如下：
 
 1. $$
-   \begin{bmatrix}  1&  2&  0 \\  0&  1&  2 \\  1&  2&  1\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\  0&  1&0 \\  2&  1&0\end{bmatrix}= 10
+   \begin{bmatrix}  1&  2&  0 \\\  0&  1&  2 \\\  1&  2&  1\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}= 10
    $$
 
 2. $$
-   \begin{bmatrix}  2&  0&  3 \\  1&  2&  3 \\  2&  1&  0\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\  0&  1&0 \\  2&  1&0\end{bmatrix}= 12
+   \begin{bmatrix}  2&  0&  3 \\\  1&  2&  3 \\\  2&  1&  0\end{bmatrix} \times  \begin{bmatrix}  1&  2&1 \\\  0&  1&0 \\\  2&  1&0\end{bmatrix}= 12
    $$
-
-   
 
 3. 一直这样计算完，每次卷积操作都会得到一个新的像素值，上面例子最后会得到3×3的结果，这就相当于是对原图像进行卷积操作后得到的特征图像。
    $$
-   out = \begin{bmatrix}  10&  12& 12 \\  18&  16& 16 \\  13&  9& 3\end{bmatrix}
+   out = \begin{bmatrix}  10&  12& 12 \\\  18&  16& 16 \\\  13&  9& 3\end{bmatrix}
    $$
 
 在`torch.nn.functional.conv2d`中有如下几个重要参数：
@@ -536,15 +531,15 @@ out = F.conv2d(_input, kernel, stride=1, padding=0)
 
 print(out)
 ''' 输出以下内容
-	tensor([[[[10, 12, 12],
+ tensor([[[[10, 12, 12],
               [18, 16, 16],
               [13,  9,  3]]]])
 '''
 # 上面个padding=1时，即将原图像四周填充一个0像素，变为6X6的输入，最后输出应该是5×5的
 '''
-	tensor([[[[ 1,  3,  4, 10,  8],
-          	  [ 5, 10, 12, 12,  6],
-          	  [ 7, 18, 16, 16,  8],
+ tensor([[[[ 1,  3,  4, 10,  8],
+             [ 5, 10, 12, 12,  6],
+             [ 7, 18, 16, 16,  8],
               [11, 13,  9,  3,  4],
               [14, 13,  9,  7,  4]]]])
 '''
@@ -616,10 +611,9 @@ for data in dataloader:
 下图是结果展示：
 
 <div align=center>
-    <img src="imgs/readme/卷积前的图像.png" alt="image-03" title="卷积前的图像" > 
+    <img src="imgs/readme/卷积前的图像.png" alt="image-03" title="卷积前的图像" >
     <img src="imgs/readme/卷积后的图像.png" alt="image-04" title="卷积后的图像" >
 </div>
-
 
 有必要讲下`Shape`，在`nn.funcational.conv2d`的输入参数`input`要求其`Shape`为`minibatch,in_channels,iH,iW)`，这个`minibatch`表示什么意思呢？这跟上述代码`torch.reshape`中的第一个参数一样。后面三个参数好理解，分别是通道数，高度和宽度。`minibatch`表示最少的抓取数量，好比上图一张大图包括很多个小图。
 
@@ -720,12 +714,12 @@ writer.close()
         <img src="imgs/readme/最大池化后图像.png" title="最大池化后图像" alt="image-06" style="zoom:200%;"></td>
     </tr>
     <tr style="border:0">
-    	<td align=center style="border:0">最大池化前图像</td>
+     <td align=center style="border:0">最大池化前图像</td>
         <td align=left style="border:0; padding-left:4%">最大池化后图像</td>
     </tr>
 </table>
 
-## Non-linear Activations 
+## Non-linear Activations
 
 非线性激活，主要是给输入增加一些非线性特征。
 
@@ -778,8 +772,6 @@ output = m(input)
 对输入进行线性转换。关系如下图：
 
 <img src="imgs/readme/linear.jpg" alt="image-07" style="zoom:50%;" title="Linear转换示意图"/>
-
-
 
 ```python
 class torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
@@ -871,7 +863,7 @@ print(loss)  # -input[target]+ln(exp(0.2)+exp(0.3)+exp(0.4))  =  tensor(1.1019)
 
 在上述损失函数中计算出了实际值与期望值的差别，这是前面提到的第一个作用；如何将其运用在更新输出上，需要用到**反向传播**，即**损失函数返回的对象**调用`backward()`函数，反向传播可以得到需要调节的参数的梯度，有了梯度就可以运用**优化器**对参数进行调节以达到整体误差降低。
 
->  梯度：在一元函数中某点切线的斜率；在多元函数中可理解为该点变化最大的方向，梯度的大小表示该方向的变化率。
+> 梯度：在一元函数中某点切线的斜率；在多元函数中可理解为该点变化最大的方向，梯度的大小表示该方向的变化率。
 
 在代码中的`model -> seq -> Protected Attributes -> \_modules -> '0' -> weight -> grad`可以观察是否运用了梯度，其中`model`是神经网络对象，`seq`是含有神经网络操作的属性（如卷积）。
 
@@ -949,10 +941,10 @@ for epoch in range(20):
     # 打印每轮学习误差，可以看见总误差是不断减小的
     print(running_loss)
     # tensor(360.4428, grad_fn=<AddBackward0>)
-	# tensor(355.6857, grad_fn=<AddBackward0>)
-	# tensor(339.2722, grad_fn=<AddBackward0>)
-	# tensor(318.3398, grad_fn=<AddBackward0>)
-	# tensor(306.8174, grad_fn=<AddBackward0>)
+ # tensor(355.6857, grad_fn=<AddBackward0>)
+ # tensor(339.2722, grad_fn=<AddBackward0>)
+ # tensor(318.3398, grad_fn=<AddBackward0>)
+ # tensor(306.8174, grad_fn=<AddBackward0>)
 ```
 
 # 现有网络模型的使用及参数修改
@@ -972,7 +964,7 @@ for epoch in range(20):
 vgg16 = torchvision.models.vgg16(weights='DEFAULT')
 print(vgg16)
 ''' 输出如下
-	.......
+ .......
   (classifier): Sequential(
     (0): Linear(in_features=25088, out_features=4096, bias=True)
     (1): ReLU(inplace=True)
@@ -994,7 +986,7 @@ print(vgg16)
 vgg16.add_module("add_linear", nn.Linear(1000, 10))
 print(vgg16)
 ''' 输出如下
-	......
+ ......
     (5): Dropout(p=0.5, inplace=False)
     (6): Linear(in_features=4096, out_features=1000, bias=True)
   )
@@ -1011,7 +1003,7 @@ print(vgg16)
 vgg16.classifier.add_module("7", nn.Linear(1000, 10))
 print(vgg16)
 ''' 输出如下
-	......
+ ......
   (classifier): Sequential(
     (0): Linear(in_features=25088, out_features=4096, bias=True)
     (1): ReLU(inplace=True)
@@ -1034,7 +1026,7 @@ print(vgg16)
 vgg16.classifier[6] = nn.Linear(4096, 10)
 print(vgg16)
 ''' 输出如下
-	......
+ ......
   (classifier): Sequential(
     (0): Linear(in_features=25088, out_features=4096, bias=True)
     (1): ReLU(inplace=True)
@@ -1444,13 +1436,13 @@ writer.close()
             <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
         </td>
         <td style="border:0">
-        	<img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
+         <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
         </td>
         <td style="border:0">
-        	<img src="imgs/readme/ship.png" alt="image-11" title="ship" />
+         <img src="imgs/readme/ship.png" alt="image-11" title="ship" />
         </td>
         <td style="border:0">
-        	<img src="imgs/readme/truck.png" alt="image-12" title="truck" />
+         <img src="imgs/readme/truck.png" alt="image-12" title="truck" />
         </td>
     </tr>
 </table>
