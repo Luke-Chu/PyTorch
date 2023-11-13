@@ -613,8 +613,9 @@ for data in dataloader:
 下图是结果展示：
 
 <div align=center>
-    <img src="imgs/readme/卷积前的图像.png" alt="image-03" title="卷积前的图像" >
-    <img src="imgs/readme/卷积后的图像.png" alt="image-04" title="卷积后的图像" >
+   <img src="imgs/readme/卷积前的图像.png" alt="image-03" title="卷积前的图像" >
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img src="imgs/readme/卷积后的图像.png" alt="image-04" title="卷积后的图像" >
 </div>
 
 有必要讲下`Shape`，在`nn.funcational.conv2d`的输入参数`input`要求其`Shape`为`minibatch,in_channels,iH,iW)`，这个`minibatch`表示什么意思呢？这跟上述代码`torch.reshape`中的第一个参数一样。后面三个参数好理解，分别是通道数，高度和宽度。`minibatch`表示最少的抓取数量，好比上图一张大图包括很多个小图。
@@ -712,6 +713,7 @@ writer.close()
 
 <div align="center">
    <img src="imgs/readme/最大池化前图像.png" title="最大池化前图像" alt="image-05">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img src="imgs/readme/最大池化后图像.png" title="最大池化后图像" alt="image-06" style="zoom:120%;">
 </div>
 
@@ -1427,22 +1429,20 @@ writer.close()
 
 网上随便找一个图片，如dog，airplane，ship，truck的图片，下图：
 
-<table style="border:0">
-    <tr style="border:0" align=center>
-        <td style="border:0">
-            <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
-        </td>
-        <td style="border:0">
-         <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
-        </td>
-        <td style="border:0">
-         <img src="imgs/readme/ship.png" alt="image-11" title="ship" />
-        </td>
-        <td style="border:0">
-         <img src="imgs/readme/truck.png" alt="image-12" title="truck" />
-        </td>
-    </tr>
-</table>
+<div style="text-align: center;">
+   <span>
+      <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
+   </span>&nbsp;&nbsp;
+   <span>
+      <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
+   </span>&nbsp;&nbsp;
+   <span>
+      <img src="imgs/readme/ship.png" alt="image-11" title="ship" />
+   </span>&nbsp;&nbsp;
+   <span>
+      <img src="imgs/readme/truck.png" alt="image-12" title="truck" />
+   </span>
+</div>
 
 将其转换成合适的输入格式，如下：
 
