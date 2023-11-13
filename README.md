@@ -482,7 +482,7 @@ model = nn.Sequential(
 - 卷积核：在图像处理时，给定输入图像，输入图像中一个小区域中像素加权平均后成为输出图像中的每个对应像素，其中权值由一个函数定义，这个函数称为卷积核。又称**滤波器**。
 
 对于一个输入图像若其只有一个通道，5×5个像素，卷积核为3×3，也是一个通道。卷积步长为1，padding=0。
-![eq-01](imgs/readme/Eq-卷积核1.svg "输入和卷积核")
+
 <div align="center">
    <img src="imgs/readme/Eq-卷积核1.svg" alt="eq-01" title="输入与卷积核">
 </div>
@@ -710,16 +710,10 @@ writer.close()
 
 下面是池化前后图像对比：
 
-<table style="border:0"><tr style="border:0">
-    <td align=center style="border:0"><img src="imgs/readme/最大池化前图像.png" title="最大池化前图像" alt="image-05"></td>
-    <td align=left style="border:0">
-        <img src="imgs/readme/最大池化后图像.png" title="最大池化后图像" alt="image-06" style="zoom:200%;"></td>
-    </tr>
-    <tr style="border:0">
-     <td align=center style="border:0">最大池化前图像</td>
-        <td align=left style="border:0; padding-left:4%">最大池化后图像</td>
-    </tr>
-</table>
+<div align="center">
+   <img src="imgs/readme/最大池化前图像.png" title="最大池化前图像" alt="image-05">
+   <img src="imgs/readme/最大池化后图像.png" title="最大池化后图像" alt="image-06" style="zoom:120%;">
+</div>
 
 ## Non-linear Activations
 
