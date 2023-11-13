@@ -14,7 +14,7 @@ test_dataset = torchvision.datasets.CIFAR10("./datasets", train=False, transform
 
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=True, num_workers=0, drop_last=False)
 
-writer = SummaryWriter("dataloader")
+writer = SummaryWriter("../dataloader")
 for epoch in range(2):
     batch_step = 0
     for data in test_loader:
