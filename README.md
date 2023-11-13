@@ -1430,18 +1430,13 @@ writer.close()
 网上随便找一个图片，如dog，airplane，ship，truck的图片，下图：
 
 <div style="text-align: center;">
-   <span>
-      <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
-   </span>&nbsp;&nbsp;
-   <span>
-      <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
-   </span>&nbsp;&nbsp;
-   <span>
-      <img src="imgs/readme/ship.png" alt="image-11" title="ship" />
-   </span>&nbsp;&nbsp;
-   <span>
-      <img src="imgs/readme/truck.png" alt="image-12" title="truck" />
-   </span>
+   <img src="imgs/readme/dog2.png" alt="image-09" title="dog" />
+   &nbsp;&nbsp;
+   <img src="imgs/readme/airplane.png" alt="image-10" title="airplane" />
+   &nbsp;&nbsp;
+   <img src="imgs/readme/ship.png" alt="image-11" title="ship" />
+   &nbsp;&nbsp;
+   <img src="imgs/readme/truck.png" alt="image-12" title="truck" />
 </div>
 
 将其转换成合适的输入格式，如下：
